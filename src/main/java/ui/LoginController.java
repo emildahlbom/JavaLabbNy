@@ -25,6 +25,7 @@ public class LoginController extends HttpServlet {
         if(userHandler.validate(userInfo)) {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
+            session.setAttribute("isLoggedIn", true);
             response.sendRedirect("products.jsp");
         } else {
             response.sendRedirect("login.jsp");

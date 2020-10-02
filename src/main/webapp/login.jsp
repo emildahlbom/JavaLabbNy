@@ -8,7 +8,7 @@
 <div align="center">
     <h1>Login</h1>
     <form action="<%=request.getContextPath()%>/login" method="post">
-        <table>
+        <table style="margin-bottom: 10px">
             <tr>
                 <td>Username</td>
                 <td><input type="text" name="username" /></td>
@@ -18,11 +18,13 @@
                 <td><input type="password" name="password" /></td>
             </tr>
         </table>
-        <input type="submit" name="login" value="Log in" />
+        <div style="display: inline-block">
+            <input type="submit" name="login" value="Log in" />
+            <a href="register.jsp">
+                <button>Register</button>
+            </a>
+        </div>
     </form>
-    <a href="register.jsp">
-        <button>Register</button>
-    </a>
 </div>
 </body>
 </html>
