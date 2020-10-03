@@ -1,6 +1,6 @@
 package bo;
 
-import db.ProductDAO;
+import db.ProductDB;
 
 import java.util.List;
 
@@ -10,10 +10,10 @@ public class Product {
     private int price;
 
     static public List<Product> getProducts() {
-        return ProductDAO.getProducts();
+        return ProductDB.getProducts();
     }
 
-    public Product(String name, int price) {
+    protected Product(String name, int price) {
         this.name = name;
         this.price = price;
     }

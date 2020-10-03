@@ -1,6 +1,6 @@
 package bo;
 
-import db.OrderDAO;
+import db.OrderDB;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -12,10 +12,10 @@ public class Order {
     private Timestamp timestamp;
 
     public static long PlaceOrder(Order order) {
-        return OrderDAO.placeOrder(order);
+        return OrderDB.placeOrder(order);
     }
 
-    public Order(List<Product> products, String username, Timestamp timestamp) {
+    protected Order(List<Product> products, String username, Timestamp timestamp) {
         this.products = products;
         this.username = username;
         this.timestamp = timestamp;

@@ -1,5 +1,6 @@
 package ui;
 
+// Bärare mellan UI lagret och verksamhetslagret.
 public class UserInfo {
     private String username;
     private String password;

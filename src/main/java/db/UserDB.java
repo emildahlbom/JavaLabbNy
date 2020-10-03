@@ -4,7 +4,13 @@ import bo.User;
 
 import java.sql.*;
 
-public class UserDAO {
+public class UserDB extends bo.User{
+
+    // Subklass till User för att kunna göra konstruktorn privat och därmed behöver alla metoder vara statiska.
+    // dvs UserDAO kan inte skapas på något annat sätt än via deras statiska metoder.
+    private UserDB(String username, String password, String name, String address) {
+        super(username, password, name, address);
+    }
 
     public static User getUser(String username) {
         try {
@@ -16,7 +22,7 @@ public class UserDAO {
             ResultSet resultset = preparedStatement.executeQuery();
 
             if (resultset.next()) {
-                return new User(resultset.getString("username"), resultset.getString("password"), resultset.getString("name"), resultset.getString("address"));
+                return new UserDB(resultset.getString("username"), resultset.getString("password"), resultset.getString("name"), resultset.getString("address"));
             }
         } catch (SQLException e) {
             e.printStackTrace();

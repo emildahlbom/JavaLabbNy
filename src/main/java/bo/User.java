@@ -1,7 +1,8 @@
 package bo;
 
-import db.UserDAO;
+import db.UserDB;
 
+// Får inte användas någon annan stans än i bo paketet (verksamhetslagret), absolut inte i UI lagret (eftersom man genom den utför operatoner kring persistens etc.
 public class User {
 
     private String username;
@@ -10,20 +11,24 @@ public class User {
     private String name;
 
     static boolean validate(String username, String password) {
-        User user = UserDAO.getUser(username);
+        User user = UserDB.getUser(username);
         return user != null && user.getUsername().equals(username) && user.getPassword().equals(password);
     }
 
+    static User getUser(String username) {
+        return UserDB.getUser(username);
+    }
+
     static boolean register(User user) {
-        boolean isUsernameInUse = UserDAO.getUser(user.getUsername()) != null;
+        boolean isUsernameInUse = UserDB.getUser(user.getUsername()) != null;
         if (isUsernameInUse) {
             return false;
         }
-        UserDAO.register(user);
+        UserDB.register(user);
         return true;
     }
 
-    public User(String username, String password, String name, String address) {
+    protected User(String username, String password, String name, String address) {
         this.username = username;
         this.password = password;
         this.name = name;

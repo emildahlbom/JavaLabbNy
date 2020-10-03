@@ -25,8 +25,9 @@ public class LoginController extends HttpServlet {
 
         if(userHandler.validate(username, password)) {
             HttpSession session = request.getSession();
-            session.setAttribute("username", username);
             session.setAttribute("isLoggedIn", true);
+            UserInfo user = userHandler.getUser(username);
+            session.setAttribute("user", user);
             response.sendRedirect("products.jsp");
         } else {
             request.setAttribute("error", "Invalid credentials.");

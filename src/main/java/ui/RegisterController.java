@@ -25,13 +25,7 @@ public class RegisterController extends HttpServlet {
         String address = request.getParameter("address");
 
         if (username.isEmpty() || password.isEmpty() || name.isEmpty() || address.isEmpty()) {
-            request.setAttribute("error", "Invalid input data.");
-            RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
-            try {
-                rd.forward(request, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            }
+            forwardErrorMessage(request, response, "Invalid input data.");
             return;
         }
 
@@ -40,13 +34,17 @@ public class RegisterController extends HttpServlet {
         if (userHandler.register(userInfo)) {
             response.sendRedirect("login.jsp");
         } else {
-            request.setAttribute("error", "Username is already in use.");
-            RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
-            try {
-                rd.forward(request, response);
-            } catch (ServletException e) {
-                e.printStackTrace();
-            }
+            forwardErrorMessage(request, response, "Username is already in use.");
+        }
+    }
+
+    private void forwardErrorMessage(HttpServletRequest request, HttpServletResponse response, String message) {
+        request.setAttribute("error", message);
+        RequestDispatcher rd = request.getRequestDispatcher("register.jsp");
+        try {
+            rd.forward(request, response);
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
         }
     }
 }

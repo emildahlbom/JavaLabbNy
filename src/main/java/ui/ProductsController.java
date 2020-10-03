@@ -16,13 +16,13 @@ public class ProductsController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
+        ArrayList<ProductInfo> cart = (ArrayList<ProductInfo>) session.getAttribute("cart");
 
         if (request.getParameter("Add") != null) {
             String name = request.getParameter("name");
             int price = Integer.parseInt(request.getParameter("price"));
             ProductInfo productInfo = new ProductInfo(name, price);
 
-            ArrayList<ProductInfo> cart = (ArrayList<ProductInfo>) session.getAttribute("cart");
             if (cart == null) {
                 cart = new ArrayList<>();
                 session.setAttribute("cart", cart);
@@ -30,16 +30,13 @@ public class ProductsController extends HttpServlet {
             cart.add(productInfo);
             response.sendRedirect("products.jsp");
         } else if (request.getParameter("Order") != null) {
-            // TODO bryt ut
-            ArrayList<ProductInfo> cart = (ArrayList<ProductInfo>) session.getAttribute("cart");
             if (cart != null) {
-                String username = (String) session.getAttribute("username");
-                long orderId = OrderHandler.placeOrder(new OrderInfo(cart, username, new Timestamp(System.currentTimeMillis())));
+                UserInfo user = (UserInfo) session.getAttribute("user");
+                long orderId = OrderHandler.placeOrder(new OrderInfo(cart, user.getUsername(), new Timestamp(System.currentTimeMillis())));
                 session.setAttribute("ordernumber", orderId);
                 response.sendRedirect("confirmation.jsp");
             }
         } else if (request.getParameter("Clear") != null) {
-            ArrayList<ProductInfo> cart = (ArrayList<ProductInfo>) session.getAttribute("cart");
             if (cart != null) {
                 cart.clear();
             }

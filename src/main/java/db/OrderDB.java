@@ -1,16 +1,22 @@
 package db;
 
 import bo.Order;
+import bo.Product;
 import com.google.gson.Gson;
 import java.sql.*;
+import java.util.List;
 
-public class OrderDAO {
+public class OrderDB extends bo.Order{
+
+    private OrderDB(List<Product> products, String username, Timestamp timestamp) {
+        super(products, username, timestamp);
+    }
 
     public static long placeOrder(Order order) {
         try {
             Connection connection = DBManager.getConnection();
 
-            // "default" är för auto increment fältet
+            // Default är AUTO INCREMENT fältet.
             String sql = "insert into orders values(default, ?,?,?)";
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
