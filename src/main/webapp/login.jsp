@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,21 +10,26 @@
     <form action="<%=request.getContextPath()%>/login" method="post">
         <table style="margin-bottom: 10px">
             <tr>
-                <td>Username</td>
-                <td><input type="text" name="username" /></td>
+                <td><input type="text" name="username" placeholder="Username"/></td>
             </tr>
             <tr>
-                <td>Password</td>
-                <td><input type="password" name="password" /></td>
+                <td><input type="password" name="password" placeholder="Password"/></td>
             </tr>
         </table>
         <div style="display: inline-block">
             <input type="submit" name="login" value="Log in" />
-            <a href="register.jsp">
-                <button>Register</button>
-            </a>
         </div>
     </form>
+    <a href="register.jsp">
+        <button style="margin-top: 5px">Register</button>
+    </a>
+<%
+    if (request.getAttribute("error") != null) {
+        %>
+            <h1>Error: <%= request.getAttribute("error") %></h1>
+        <%
+    }
+%>
 </div>
 </body>
 </html>

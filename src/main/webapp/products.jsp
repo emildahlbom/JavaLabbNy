@@ -2,7 +2,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="ui.ProductInfo" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 
 <html>
 <head>

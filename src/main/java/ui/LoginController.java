@@ -2,6 +2,8 @@ package ui;
 
 import bo.UserHandler;
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,15 +22,20 @@ public class LoginController extends HttpServlet {
 
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        UserInfo userInfo = new UserInfo(username, password);
 
-        if(userHandler.validate(userInfo)) {
+        if(userHandler.validate(username, password)) {
             HttpSession session = request.getSession();
             session.setAttribute("username", username);
             session.setAttribute("isLoggedIn", true);
             response.sendRedirect("products.jsp");
         } else {
-            response.sendRedirect("login.jsp");
+            request.setAttribute("error", "Invalid credentials.");
+            RequestDispatcher rd = request.getRequestDispatcher("login.jsp");
+            try {
+                rd.forward(request, response);
+            } catch (ServletException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

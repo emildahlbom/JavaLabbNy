@@ -4,11 +4,11 @@ import ui.UserInfo;
 
 public class UserHandler {
 
-    public boolean validate(UserInfo userInfo) {
-        return User.validate(new User(userInfo.getUsername(), userInfo.getPassword()));
+    public boolean validate(String username, String password) {
+        return User.validate(username, password);
     }
 
-    // public void createUser()
-
-    // public UserInfo getUser()
+    public boolean register(UserInfo userInfo) {
+        return User.register(new User(userInfo.getUsername(), userInfo.getPassword(), userInfo.getName(), userInfo.getAddress()));
+    }
 }
