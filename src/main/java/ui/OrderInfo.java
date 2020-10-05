@@ -3,6 +3,7 @@ package ui;
 import java.sql.Timestamp;
 import java.util.List;
 
+// Bärare mellan UI lagret och verksamhetslagret.
 public class OrderInfo {
 
     private List<ProductInfo> products;

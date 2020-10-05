@@ -13,6 +13,7 @@ public class Product {
         return ProductDB.getProducts();
     }
 
+    // Protected eftersom det inte är tänkt att skapas utanför verksamhetslagret.
     protected Product(String name, int price) {
         this.name = name;
         this.price = price;

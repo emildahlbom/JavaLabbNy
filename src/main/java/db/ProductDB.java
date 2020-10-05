@@ -6,6 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+// Subklass till User för att kunna göra konstruktorn privat och User till protected
 public class ProductDB extends bo.Product{
 
     private ProductDB(String name, int price) {

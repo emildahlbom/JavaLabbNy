@@ -5,6 +5,7 @@ import ui.OrderInfo;
 import java.util.List;
 import java.util.stream.Collectors;
 
+// Fasadobjekt för att UI lagret inte ska ha tillgång till det riktiga verksamhetsobjektet Order.
 public class OrderHandler {
 
     public static long placeOrder(OrderInfo orderInfo) {

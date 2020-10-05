@@ -2,7 +2,6 @@ package bo;
 
 import db.UserDB;
 
-// Får inte användas någon annan stans än i bo paketet (verksamhetslagret), absolut inte i UI lagret (eftersom man genom den utför operatoner kring persistens etc.
 public class User {
 
     private String username;
@@ -28,6 +27,7 @@ public class User {
         return true;
     }
 
+    // Protected eftersom det inte är tänkt att skapas utanför verksamhetslagret.
     protected User(String username, String password, String name, String address) {
         this.username = username;
         this.password = password;

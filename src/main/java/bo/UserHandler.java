@@ -2,7 +2,7 @@ package bo;
 
 import ui.UserInfo;
 
-// facade objekt för att man inte ska ha tillgång till det "riktiga" User objektet utanför verksamhetslagret.
+// Fasadobjekt för att UI lagret inte ska ha tillgång till det riktiga verksamhetsobjektet User.
 public class UserHandler {
 
     public boolean validate(String username, String password) {

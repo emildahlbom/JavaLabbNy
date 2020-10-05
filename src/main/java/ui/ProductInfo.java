@@ -1,5 +1,6 @@
 package ui;
 
+// Bärare mellan UI lagret och verksamhetslagret.
 public class ProductInfo {
 
     private String name;

@@ -6,8 +6,7 @@ import java.sql.*;
 
 public class UserDB extends bo.User{
 
-    // Subklass till User för att kunna göra konstruktorn privat och därmed behöver alla metoder vara statiska.
-    // dvs UserDAO kan inte skapas på något annat sätt än via deras statiska metoder.
+    // Subklass till User för att kunna göra konstruktorn privat och User till protected
     private UserDB(String username, String password, String name, String address) {
         super(username, password, name, address);
     }

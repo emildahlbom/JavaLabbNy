@@ -1,22 +1,16 @@
 package db;
 
 import bo.Order;
-import bo.Product;
 import com.google.gson.Gson;
 import java.sql.*;
-import java.util.List;
 
-public class OrderDB extends bo.Order{
-
-    private OrderDB(List<Product> products, String username, Timestamp timestamp) {
-        super(products, username, timestamp);
-    }
+public class OrderDB {
 
     public static long placeOrder(Order order) {
         try {
             Connection connection = DBManager.getConnection();
 
-            // Default är AUTO INCREMENT fältet.
+            // parametern "default" är AUTO INCREMENT fältet.
             String sql = "insert into orders values(default, ?,?,?)";
             PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
@@ -24,7 +18,6 @@ public class OrderDB extends bo.Order{
             statement.setTimestamp(2, order.getTimestamp());
             statement.setString(3, new Gson().toJson(order.getProducts()));
 
-            String generatedColumns[] = { "ID" };
             statement.executeUpdate();
 
             ResultSet generatedKeys = statement.getGeneratedKeys();
